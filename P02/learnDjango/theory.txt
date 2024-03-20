@@ -1,0 +1,14 @@
+What is the purpose of the __init__.py file?
+The __init__.py file is responsible for telling the compiler to treat this directory as a package. 
+
+What does the 'settings.py' file do?
+The settings.py file contains the settings of the project.
+
+What is the purpose of the 'urls.py' file?
+The purpose of the 'urls.py' file, is that it contains the route definitions for the project.
+
+Describe what the 'wsgi.py' file does
+This file is used to communicate with server software
+
+What does the 'manage.py' file do?
+The 'manage.py' file is used to manage your project and various utility functions like development web server, database migraiton.
