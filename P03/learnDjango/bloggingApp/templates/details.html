@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <!-- <div>
+        <h2>Books</h2>
+        <d1>
+            <dt>Title</dt>
+            <dd>{{book.title}}</dd>
+            <dt>Author</dt>
+            <dd>{{book.author}}</dd>
+            <dt>Brief Description</dt>
+            <dd>{{book.description}}</dd>
+            <dt>Number of Ratings</dt>
+            <dd>{{book.rating.numReviews}}</dd>
+            <dt>Average Rating</dt>
+            <dd>{{book.rating.avgRating}}</dd>
+        </d1>
+    </div> -->
+    <div>
+        <h2>Blog Post</h2>
+        <d1>
+            <dt>Post</dt>
+            <dd>{{post.title}}</dd>
+            <dt>Description</dt>
+            <dd>{{post.description}}</dd>
+            <dt>Date</dt>
+            <dd>{{post.date}}</dd>
+        </d1>
+    </div>
+</div>
+{% endblock %}
