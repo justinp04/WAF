@@ -1,0 +1,21 @@
+<!-- List of school -->
+{% extends 'base.html' %}
+{% block content %}
+<h2>Schools</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Head of School</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for school in schools %}
+        <tr>
+            <td><a href="http://localhost:8000/handbook/{{school.id}}">{{ school.name }}</a></td>
+            <td>{{ school.headOfSchool }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

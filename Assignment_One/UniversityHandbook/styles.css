@@ -1,0 +1,14 @@
+:root {
+    --text-color: #FFFFFF;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.remove-styling {
+    text-decoration: none;
+    /* color: var(--text-color); */
+}
