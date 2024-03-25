@@ -1,0 +1,25 @@
+<!-- List of courses -->
+{% extends 'base.html' %}
+{% block content %}
+<h2>Courses</h2>
+<table>
+    <thead>
+        <tr>
+            <th>School Name</th>
+            <th>Course Name</th>
+            <th>Coordinator</th>
+            <th>Credits</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.school }}</td>
+            <td>{{ course.name }}</td>
+            <td>{{ course.coordinator }}</td>
+            <td>{{ course.credits }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
