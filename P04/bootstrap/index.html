@@ -9,11 +9,62 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col">column one</div>
-                <div class="col-6">column two</div>
-                <div class="col">column three</div>
+                <div class="col text-center">column one</div>
+                <div class="col-6 text-center">column two</div>
+                <div class="col text-center">column three</div>
             </div>
+            <!-- Creating a media object -->
+            <div class="d-flex">
+                <div class="flex-shrink-0">
+                    <img src="" alt="Media image"/>
+                </div>
+                <div class="flex-grow-1 ms-3">
+                    Some text for the <mark>media component</mark>
+                </div>
             </div>
+            <!-- Quote blocks -->
+            <figure>
+                <blockquote class="blockquote">
+                    <p>"Is a pineapple an apple or a pine"</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    Some dude in <cite title="Source Title">The year 2024</cite>
+                </figcaption>
+            </figure>
+            <!-- List alignment -->
+            <dl class="row">
+                <dt class="col-sm-3">Description lists</dt>
+                <dd class="col-sm-9">A description list is perfect for defining terms</dd>
+
+                <dt class="col-sm-3">That's cap</dt>
+                <dd class="col-sm-9">Referring to something that is believed to be false</dd>
+                
+                <dt class="col-sm-3">Poggers</dt>
+                <dd class="col-sm-9">When something is pretty cool</dd>
+            </dl>
+            <table class="table table-hover table-responsive">
+                <caption>List of users</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Column 1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Lorem</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>dolor</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>consectetur</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>

@@ -1,0 +1,55 @@
+:root {
+    --background-color: #00183C;
+    --font-color: #f3f0f0;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-color) !important;
+    color: var(--font-color) !important;
+}
+
+/* Hero section styling */
+#hero-div {
+    height: 100vh;
+    margin: auto auto;
+    border: 1px red dashed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-section {
+    display: flex;
+    justify-content: center;
+}
+
+.hero-section > p {
+    font-family: "Neuton", serif;
+    font-weight: 350;
+    font-size: 80px;
+    text-align: center; 
+}
+
+/* Image section styling (hero section images)*/
+#hero-images {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10rem;
+    overflow: hidden;
+}
+
+.image-element {
+    height: 300px;
+    width: 300px;
+    /* border: 1px red dashed; */
+    margin: 0 1rem;
+    overflow: hidden;
+    opacity: 100%;
+    object-fit: contain;
+    background-position: center center;
+}
