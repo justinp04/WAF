@@ -1,0 +1,21 @@
+{
+  "name": "p07",
+  "version": "1.0.0",
+  "description": "",
+  "main": "middleware.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-timeout": "^1.9.0",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "mongodb": "^4.17.2",
+    "mongoose": "^8.3.5",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
+  }
+}
