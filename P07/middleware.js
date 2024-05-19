@@ -14,17 +14,40 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+// Use a static file in repository, gotta load the repo first
+app.use(express.static('public'));
+
 // Pug is a template engine
 app.set('view engine', 'pug');
 
 app.use(helmet()); 
 app.use(morgan( 'tiny' )); 
-app.use(timeout( '5s' )); 
+app.use(timeout( '10s' )); 
 
 // An empty endpoint to try things out. This won t respond! 
-app.get( '/' , (req, res) => {
+app.get( '/' , async (req, res) => {
+    // Use a .find handler to retrieve all ToDo items
+    // Then, render the index view and pass the data of the data base query through the local param of render. The key is toDoList
+
+    console.log('getting to dos');
+
+    // Log to console
+    let pList = await getToDos();
+
+    console.log('The list is: ', pList);
+
+    if(pList)
+    {
+        res.render('index', {toDoList: pList});
+    }
+    else
+    {
+        res.send('ToDo List is empty');
+    }
+
     // res.render('index', {theTitle: 'COMP6006 app', theMessage: 'Hello'});
-    res.sendFile(__dirname + '/index.html');
+    // createPost();
+    // res.send('Attempted to create post');
 }); 
 
 app.listen(3000, () => {console.log("Listening on 3000.")});
@@ -35,15 +58,15 @@ app.post('/send', function(req, res) {
     let body = req.body;
     if(req.body)
     {
-        let password = encodeURIComponent(req.body);
+        let password = decodeURIComponent(req.body.taskName);
 
         console.log('Attempted to connect');
 
-        mongoose.connect(`mongodb+srv://justinpan688:3wLmUtEh1b6FQ7qr@cluster0.iwb9lzo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
-            .then(() => console.log('Connected to MongoDB'))
-            .catch(err => console.error('Could not connect to MongoDB', err));
+        // password is meant to be: 3wLmUtEh1b6FQ7qr
 
-        res.send('Attempted to connect');
+        createToDo(req.body.taskName);
+
+        res.redirect('/');
     }
     else
     {
@@ -52,3 +75,44 @@ app.post('/send', function(req, res) {
         res.send('Attempted to connect');
     }
 });
+
+app.get('/connect', async function(req, res) {
+    mongoose.connect(`mongodb+srv://justinpan688:3wLmUtEh1b6FQ7qr@cluster0.iwb9lzo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
+            .then(() => console.log('Connected to MongoDB'))
+            .catch(err => console.error('Could not connect to MongoDB', err));
+
+    console.log('redirecting');
+    res.redirect('/');
+});
+
+// Schemas
+const todoSchema = new mongoose.Schema({
+    task: String,
+    date: {type: Date, default: Date.now}
+});
+
+const ToDo = mongoose.model('todo', todoSchema);
+
+async function createToDo(taskName) {
+    const toDo = new ToDo({
+        task: taskName,
+    });
+    const result = await toDo.save();
+}
+
+async function getToDos() {
+    let returnValue = null;
+
+    const toDoList = await ToDo
+        .find({})
+        .select({})
+        .then((data) => {
+            // console.log("Printing: ", data);
+            returnValue = data;
+        })
+        .catch((err) => {
+            console.error('Error: ', err);
+        });
+    
+    return returnValue;
+}
