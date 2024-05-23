@@ -12,4 +12,13 @@ code {
     monospace;
 }
 
+/* Nav bar styling */
+
+/* Profile Picture and Info */
+#profile-picture {
+  height: 250px;
+  width: 250px;
+  border: 5px solid white;
+}
+
 @import "~bootstrap/dist/css/bootstrap.css";
