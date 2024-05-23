@@ -22,14 +22,12 @@ app.set('view engine', 'pug');
 
 app.use(helmet()); 
 app.use(morgan( 'tiny' )); 
-app.use(timeout( '10s' )); 
+app.use(timeout( '20s' )); 
 
 // An empty endpoint to try things out. This won t respond! 
 app.get( '/' , async (req, res) => {
     // Use a .find handler to retrieve all ToDo items
     // Then, render the index view and pass the data of the data base query through the local param of render. The key is toDoList
-
-    console.log('getting to dos');
 
     // Log to console
     let pList = await getToDos();
@@ -77,7 +75,8 @@ app.post('/send', function(req, res) {
 });
 
 app.get('/connect', async function(req, res) {
-    mongoose.connect(`mongodb+srv://justinpan688:3wLmUtEh1b6FQ7qr@cluster0.iwb9lzo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
+    console.log('connecting')
+    await mongoose.connect('mongodb+srv://justinpan688:3wLmUtEh1b6FQ7qr@cluster0.iwb9lzo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
             .then(() => console.log('Connected to MongoDB'))
             .catch(err => console.error('Could not connect to MongoDB', err));
 
