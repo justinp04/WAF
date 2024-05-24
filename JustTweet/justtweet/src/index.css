@@ -1,3 +1,8 @@
+:root {
+  --background-color: #d0d6d6;
+  --twitter-blue: #008AD8;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -19,6 +24,18 @@ code {
   height: 250px;
   width: 250px;
   border: 5px solid white;
+}
+
+/* Right Panel styling */
+.follow-button {
+  background-color: white;
+  color: var(--twitter-blue);
+  border: 1px var(--twitter-blue) solid;
+}
+
+/* Misc */
+.blue-background {
+  background-color: var(--background-color);
 }
 
 @import "~bootstrap/dist/css/bootstrap.css";

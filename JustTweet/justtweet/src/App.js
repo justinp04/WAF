@@ -10,6 +10,8 @@ import RightPanel from './components/RightPanel';
 // import { BrowserRouter, Route } from 'react-router-dom';
 
 function App() {
+  let pictureURL = 'https://ih1.redbubble.net/image.4835389836.2862/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg';
+
   // Method to retrieve the array from MongoDB
   return (
     <div className="App">
@@ -17,36 +19,26 @@ function App() {
       <ProfileCover/>
       <ProfileStats />
       <div className="d-flex">
-        <div id="profile-info" style={{width: '30vw'}}>
+        <div id="profile-info" className="blue-background" style={{
+          width: '30vw'}}>
           <ProfileInfo name='Sir Pepe III'/>
         </div>
-        <div id="tweets" style={{width: '40vw'}}>
+        <div id="tweets" style={{
+          width: '40vw'}}>
           <div id="new-tweet">
-            <NewTweet />
+            <NewTweet picture={pictureURL}/>
           </div>
           <div id="tweet-cards">
             {/* Map function for TweetCard */}
             {/* Retrieve list of tweets from MongoDB */}
+            <TweetCard />
+            {/* <img src={pictureURL} alt="profile-pic"/> */}
           </div>
         </div>
-        <div id="right-panel" style={{width: '30vw'}}>
+        <div id="right-panel" className="blue-background" style={{width: '30vw'}}>
           <RightPanel />
         </div>
       </div>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
     </div>
   );
 }

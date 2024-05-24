@@ -13,7 +13,9 @@ class ProfileInfo extends Component {
     render() {
         return(
             // Name
-            <h3>{this.state.name}</h3>
+            <div>
+                <h3>{this.state.name}</h3>
+            </div>
         );
     };
 }
