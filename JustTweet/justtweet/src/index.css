@@ -1,5 +1,6 @@
 :root {
   --background-color: #d0d6d6;
+  --background-color-light: white;
   --twitter-blue: #008AD8;
 }
 
@@ -19,23 +20,64 @@ code {
 
 /* Nav bar styling */
 
+/* Profile picture */
+
 /* Profile Picture and Info */
+#profile-info-parent-div {
+  margin-left: 40%;
+}
+
 #profile-picture {
   height: 250px;
   width: 250px;
   border: 5px solid white;
 }
 
+#profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 /* Right Panel styling */
+#right-panel-div {
+  background-color: var(--background-color-light);
+  margin: 0 1rem;
+  width: fit-content;
+  padding-right: 2rem; 
+}
+
+#right-panel-header {
+  display: flex;
+  align-items: end;
+}
+
 .follow-button {
-  background-color: white;
+  background-color: var(--background-color-light);
   color: var(--twitter-blue);
   border: 1px var(--twitter-blue) solid;
+}
+
+#recommendations-list > ul{
+  list-style: none;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
 }
 
 /* Misc */
 .blue-background {
   background-color: var(--background-color);
+}
+
+.gray-text {
+  color: gray;
+}
+
+.no-styling {
+  text-decoration: none;
 }
 
 @import "~bootstrap/dist/css/bootstrap.css";

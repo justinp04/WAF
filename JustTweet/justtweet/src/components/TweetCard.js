@@ -19,36 +19,46 @@ class TweetCard extends Component {
     }
 
     render() {
+        console.log(this.state.picture);
         return(
-            <div className="d-flex flex-column">
-                <div className="d-flex flex-column">
-                    <div id="tweet-info">
-                        <p><strong>{this.name}</strong> @{this.handle} - {this.date}</p>
+            <div className="d-flex border-bottom align-items-top">
+                <div className="px-1" style={{
+                    paddingTop: '2rem'
+                }}>
+                    <img src={this.state.picture} className="rounded-circle" alt="Profile Picture" style={{
+                        height: '3.5rem',
+                        width: '3.5rem',
+                        objectFit: 'cover !important'
+                    }}/>
+                </div>
+                <div className="py-2" style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start'
+                }}>
+                    <div id="tweet-info" className="h-auto my-0 mx-2">
+                            <p className="gray-text"><strong>{this.name}</strong> @{this.handle} - {this.date}</p>
                     </div>
-                    <div>
-                        <div className="px-1">
-                            <img src='https://ih1.redbubble.net/image.4835389836.2862/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg' className="rounded-circle" alt="Profile Picture" style={{
-                                height: '3.5rem',
-                                width: '3.5rem',
-                                objectFit: 'cover !important'
-                            }}/>
-                        </div>
-                        <div id="content">
-                            <p>{this.content}</p>
-                        </div>
+                    <div id="content" className="mx-2">
+                        <p className="text-start">{this.state.content}</p>
                     </div>
-                    <div className="d-flex">
+                    <div id="stats" className="mx-2" style={{
+                        width: '50%',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        flexGrow: 1
+                    }}>
                         <div id="comments">
-                            <p>{this.numComments}</p>
+                            <p className="gray-text">{this.state.numComments}</p>
                         </div>
                         <div id="num-reposts">
-                            <p>{this.numReposts}</p>
+                            <p className="gray-text">{this.state.numReposts}</p>
                         </div>
                         <div id="num-likes">
-                            <p>{this.numLikes}</p>
+                            <p className="gray-text">{this.state.numLikes}</p>
                         </div>
                         <div id="num-views">
-                            <p>{this.numViews}</p>
+                            <p className="gray-text">{this.state.numViews}</p>
                         </div>
                     </div>
                 </div>

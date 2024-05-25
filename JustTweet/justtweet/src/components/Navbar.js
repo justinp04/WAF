@@ -23,7 +23,9 @@ class Navbar extends Component {
                 </div>
                 <form className="d-flex">
                     <input className="form-control mr-sm-2 rounded-5" type="search" placeholder="Search Twitter" aria-label="Search"/>
-                    <button className="btn my-2 my-sm-0 btn-primary mx-2 rounded-5 px-3" type="submit">Tweet</button>
+                    <button className="btn my-2 my-sm-0 btn-primary mx-2 rounded-5 px-3" type="submit" style={{
+                        fontWeight: 500
+                    }}>Tweet</button>
                 </form>
             </nav>
         );
