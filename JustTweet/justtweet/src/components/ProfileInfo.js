@@ -23,7 +23,6 @@ class ProfileInfo extends Component {
                     <a className="no-styling my-0 py-1">Perth, WA</a>
                     <p className="gray-text my-0 py-1">Joined {this.state.joinDate}</p>
                     <button className="btn my-2 btn-primary mx-0 rounded-5 px-5" type="submit" style={{
-                        minWidth: '15rem',
                         maxWidth: '17.5rem',
                         fontWeight: 500
                     }}>Tweet to {this.props.name}</button>

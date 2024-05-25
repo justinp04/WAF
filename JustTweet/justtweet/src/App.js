@@ -19,7 +19,10 @@ function App() {
     numViews: 1
   };
 
+  let numTweets = 0;
+
   let tweet = {
+    id: numTweets,
     pictureURL: placeholderPictureURL,
     content: placeholderContent,
     stats: placeholderStats
