@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import * as ReactBootstrap from 'react-bootstrap';
 
 class Navbar extends Component {
     render() {
@@ -8,16 +7,16 @@ class Navbar extends Component {
                 <div className="navbar-collapse">
                     <ul id="navButtons" className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link" href="">Home</a>
+                            <a className="nav-link" href="www.google.com">Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="">Moments</a>
+                            <a className="nav-link" href="www.google.com">Moments</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="">Notifications</a>
+                            <a className="nav-link" href="www.google.com">Notifications</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="">Messages</a>
+                            <a className="nav-link" href="www.google.com">Messages</a>
                         </li>
                     </ul>
                 </div>

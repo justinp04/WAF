@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import * as ReactBootstrap from 'react-bootstrap';
 
 class ProfileStats extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            numTweets: this.props.numTweets
+        }
+    }
+
     render() {
+        console.log('Num Tweets are: ', this.state.numTweets);
         return(
             <div className="container-fluid d-flex py-2 bg-light" style={{ paddingLeft: '30vw'}}>
                 {/* <div style={{ 
@@ -13,7 +21,7 @@ class ProfileStats extends Component {
                 </div> */}
                 <div className="d-flex flex-column px-2">
                     <p className="text-center my-1">Tweets</p>
-                    <p id="num-tweets" className="text-center my-1">0</p>
+                    <p id="num-tweets" className="text-center my-1">{this.state.numTweets}</p>
                 </div>
                 <div className="d-flex flex-column px-2">
                     <p className="text-center my-1">Following</p>

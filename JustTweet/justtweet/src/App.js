@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import ProfileCover from './components/ProfileCover';
@@ -8,72 +8,116 @@ import NewTweet from './components/NewTweet';
 import TweetCard from './components/TweetCard';
 import RightPanel from './components/RightPanel';
 // import { BrowserRouter, Route } from 'react-router-dom';
+import axios from 'axios';
 
-function App() {
-  let placeholderPictureURL = 'https://ih1.redbubble.net/image.4835389836.2862/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg';
-  let placeholderContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum dui diam, non vulputate augue egestas id. Donec tincidunt neque sapien, a sagittis velit iaculis at. Aenean porta nec purus ut vulputate. Cras vitae lorem elit. Ut vestibulum nisi eget vulputate tristique. Ut vitae mi finibus odio interdum tincidunt ac eu dui. Quisque lobortis nisi justo, in fermentum lectus ultrices vitae. Praesent non condimentum metus, id fermentum urna.";
-  let placeholderStats = {
-    numComments: 1,
-    numLikes: 1,
-    numReposts: 1,
-    numViews: 1
-  };
+class App extends Component {
+  constructor(props) {
+    super(props);
 
-  let numTweets = 0;
+    this.state = {
+      name: 'Sir Pepe III',
+      handle: 'sp3',
+      tweets: [],
+      numTweets: 0,
+      loading: true
+    };
 
-  let tweet = {
-    id: numTweets,
-    pictureURL: placeholderPictureURL,
-    content: placeholderContent,
-    stats: placeholderStats
+    // Ensures that when this method is called, it is called in this context.
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
-  // Connect to mongoDV and retrieve tweets
-  let tweets = [];
+  async handleDelete(tweetID) {
+    // Retrieve list of tweets from MongoDB
+    // Filter new array by dropping the tweetID 
+    await axios.delete(`http://localhost:3000/delete/${tweetID}`);
 
-  console.log(tweet);
+    this.setState(prevState => {
+        const updatedTweets = prevState.tweets.filter(tweet => tweet._id !== tweetID);
+        return {
+          tweets: updatedTweets,
+          numTweets: updatedTweets.length
+        };
+    });
+  
+    console.log("Deleted tweet");
 
-  tweets.push(tweet);
+    window.location.reload();
+  }
 
-  // Method to retrieve the array from MongoDB
-  return (
-    <div className="App" style={{
-      minHeight: '100vh'
-    }}>
-      <Navbar />
-      <ProfileCover/>
-      <ProfileStats />
-      <div className="d-flex h-auto">
-        <div id="profile-info" className="blue-background h-auto" style={{
-          width: '30vw'}}>
-          <ProfileInfo name='Sir Pepe III'/>
-        </div>
-        <div id="tweets" className="h-auto" style={{
-          width: '40vw'}}>
-          <div id="new-tweet">
-            <NewTweet picture={placeholderPictureURL}/>
+  async handleAdd(content) {
+    // console.log('Added tweet: ', content)
+    const newTweet = {tweetContent: content}
+    const {data: tweet} = await axios.post('http://localhost:3000/post', newTweet)
+
+    console.log(tweet);
+  }
+
+  async componentDidMount() {
+    console.log('getting tweets');
+    const {data: tweets} = await axios.get('http://localhost:3000/tweets');
+
+    tweets.reverse();
+
+    this.setState({
+      tweets: tweets,
+      numTweets: tweets.length,
+      loading: false});
+
+    console.log(this.state.numTweets);
+  }
+
+  render() {
+    // Method to retrieve the array from MongoDB
+
+    if (this.state.loading) {
+      return <div> Loading... </div>;
+    }
+    
+    return (
+      <div className="App" style={{
+        minHeight: '100vh'
+      }}>
+        <Navbar />
+        <ProfileCover/>
+        <ProfileStats 
+          numTweets={this.state.numTweets}/>
+        <div className="d-flex h-auto">
+          <div id="profile-info" className="blue-background h-auto" style={{
+            width: '30vw'}}>
+            <ProfileInfo 
+              name='Sir Pepe III'
+              handle='theRealPepe'
+              joinDate='Dec 2008'/>
           </div>
-          <div id="tweet-cards">
-            {/* Map function for TweetCard */}
-            {/* Retrieve list of tweets from MongoDB */}
-            {tweets.map(tweet =>
-              <TweetCard 
-                picture={tweet.placeholderPictureURL}
-                content={tweet.content}
-                numLikes= {tweet.stats.numLikes}
-                numComments = {tweet.stats.numComments}
-                numReposts= {tweet.stats.numReposts}
-                numViews= {tweet.stats.numViews} />
-            )}
-            {/* <img src={pictureURL} alt="profile-pic"/> */}
+          <div id="tweets" className="h-auto" style={{
+            width: '40vw'}}>
+            <div id="new-tweet">
+              <NewTweet
+                onPost={this.handleAdd}/>
+            </div>
+            <div id="tweet-cards">
+              {/* Map function for TweetCard */}
+              {/* Retrieve list of tweets from MongoDB */}
+              {this.state.tweets.map(tweet =>
+                <TweetCard 
+                  onDelete={this.handleDelete}
+                  id={tweet._id}
+                  content={tweet.content}
+                  name={this.state.name}
+                  handle={this.state.handle}
+                  date={tweet.date}/>
+              )}
+              {/* <img src={pictureURL} alt="profile-pic"/> */}
+            </div>
           </div>
-        </div>
-        <div id="right-panel" className="blue-background h-auto" style={{width: '30vw'}}>
-          <RightPanel />
+          <div id="right-panel" className="blue-background h-auto" style={{width: '30vw'}}>
+            <RightPanel />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
