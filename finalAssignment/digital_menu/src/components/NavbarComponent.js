@@ -4,18 +4,24 @@ import { Nav, Navbar, Container } from 'react-bootstrap';
 class NavbarComponent extends Component {
     render() {
         return(
-            <Navbar className="bg-body-tertiary">
-                <Container>
-                <Navbar.Brand href="#home">
-                    <img
-                    alt=""
-                    src="public/logo.png"
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top"
-                    />{' '}
-                    React Bootstrap
-                </Navbar.Brand>
+            <Navbar bg="dark" data-bs-theme="dark" fixed="top">
+                <Container className="d-flex">
+                    <div className="d-flex">
+                        <Navbar.Brand href="#home">
+                            <img
+                                alt=""
+                                src="/logo.png"
+                                width="30"
+                                height="30"
+                                className="d-inline-block align-top"
+                            />{' '}
+                            Bussin Biner
+                        </Navbar.Brand>
+                        <Nav className="me-auto">
+                            <Nav.Link href="#home">Home</Nav.Link>
+                        </Nav>
+                    </div>
+                    {/* Shopping cart icon goes here */}
                 </Container>
             </Navbar>
         );
