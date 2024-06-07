@@ -1,0 +1,122 @@
+[
+    {
+        "name": "Cheeseburger",
+        "amount": 8.99
+    },
+    {
+        "name": "Veggie Burger",
+        "amount": 9.49
+    },
+    {
+        "name": "Chicken Sandwich",
+        "amount": 7.99
+    },
+    {
+        "name": "Grilled Cheese",
+        "amount": 5.49
+    },
+    {
+        "name": "Caesar Salad",
+        "amount": 6.99
+    },
+    {
+        "name": "Greek Salad",
+        "amount": 7.49
+    },
+    {
+        "name": "Chicken Caesar Wrap",
+        "amount": 8.49
+    },
+    {
+        "name": "Buffalo Wings",
+        "amount": 10.99
+    },
+    {
+        "name": "French Fries",
+        "amount": 3.49
+    },
+    {
+        "name": "Onion Rings",
+        "amount": 4.49
+    },
+    {
+        "name": "Mozzarella Sticks",
+        "amount": 5.99
+    },
+    {
+        "name": "Tacos (3 pcs)",
+        "amount": 7.99
+    },
+    {
+        "name": "Fish and Chips",
+        "amount": 12.99
+    },
+    {
+        "name": "Spaghetti Bolognese",
+        "amount": 11.49
+    },
+    {
+        "name": "Margherita Pizza",
+        "amount": 10.49
+    },
+    {
+        "name": "Pepperoni Pizza",
+        "amount": 11.99
+    },
+    {
+        "name": "BBQ Chicken Pizza",
+        "amount": 12.49
+    },
+    {
+        "name": "Sushi Platter",
+        "amount": 14.99
+    },
+    {
+        "name": "Pad Thai",
+        "amount": 13.49
+    },
+    {
+        "name": "Fried Rice",
+        "amount": 8.49
+    },
+    {
+        "name": "Steak",
+        "amount": 18.99
+    },
+    {
+        "name": "Lobster Roll",
+        "amount": 19.99
+    },
+    {
+        "name": "Lemonade",
+        "amount": 2.49
+    },
+    {
+        "name": "Iced Tea",
+        "amount": 2.49
+    },
+    {
+        "name": "Coca-Cola",
+        "amount": 1.99
+    },
+    {
+        "name": "Orange Juice",
+        "amount": 2.99
+    },
+    {
+        "name": "Milkshake",
+        "amount": 4.49
+    },
+    {
+        "name": "Coffee",
+        "amount": 2.49
+    },
+    {
+        "name": "Latte",
+        "amount": 3.49
+    },
+    {
+        "name": "Espresso",
+        "amount": 2.49
+    }
+]
