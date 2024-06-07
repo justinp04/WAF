@@ -31,7 +31,7 @@ export default class MenuItem extends Component {
                 {/* Maybe use pixabay in the back end to get the image? */}
                 <Card.Img variant="top" src={this.state.imageURL} />
                 <Card.Body>
-                    <Card.Title>${this.state.name}</Card.Title>
+                    <Card.Title>{this.state.name}</Card.Title>
                     <Card.Text>
                         Some quick example text to build on the card title and make up the
                         bulk of the card's content.

@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import NavbarComponent from './components/NavbarComponent';
 import MenuItem from './components/MenuItem';
+import ShoppingCartItem from './components/ShoppingCartItem';
 
 // Import bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -35,6 +36,7 @@ export default class App extends Component {
                 <NavbarComponent />
                 <header className="App-header">
                     <MenuItem />
+                    {/* <ShoppingCartItem /> */}
                 </header>
             </div>
         );
