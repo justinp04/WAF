@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Card, Container } from 'react-bootstrap';
 import ShoppingCartItem from './ShoppingCartItem';
+import ModalComponent from './ModalComponent';
 
 import axios from 'axios';
+import { texture } from 'three/examples/jsm/nodes/Nodes.js';
 
 export default class ShoppingCart extends Component {
     constructor(props) {
@@ -13,16 +15,22 @@ export default class ShoppingCart extends Component {
                 acc[item.name] = item.quantity || 1; // Or 1, not 0 because items are selected items only
                 return acc;
             }, {}),
-            subtotal: 0
+            subtotal: 0,
+            show: false,
+            message: ''
         };
 
         this.placeOrder = this.placeOrder.bind(this);
         this.calculateTotal = this.calculateTotal.bind(this);
         this.updateQuantity = this.updateQuantity.bind(this);
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     async placeOrder() {
         console.log("Order place attempt");
+
+        let status = false;
 
         const order = await axios.post('http://localhost:3000/placeOrder', this.props.items.map(item => ({
             ...item,
@@ -33,10 +41,19 @@ export default class ShoppingCart extends Component {
 
         if(order.status) {
             this.props.items.map(item => this.props.removeFromCart(item.name));
-            return true;
+            status = true;
+            this.setState({
+                message: "Your order has been successfully placed!"
+            })
+        }
+        else {
+            this.setState({
+                message: "Your order has failed?"
+            });
         }
 
-        return false;
+        this.handleShow();
+        return status;
 
         // console.log(this.props.items);
     }
@@ -49,6 +66,18 @@ export default class ShoppingCart extends Component {
                 [name]: quantity
             }
         }));
+    }
+
+    handleShow() {
+        this.setState({
+            show: true
+        });
+    }
+
+    handleClose() {
+        this.setState({
+            show: false
+        });
     }
 
     calculateTotal() {
@@ -74,9 +103,13 @@ export default class ShoppingCart extends Component {
                         <Button 
                             className="fluid" 
                             variant="primary" 
-                            onClick={this.placeOrder}>Place order</Button>
+                            onClick={this.placeOrder}
+                            disabled={totalPrice === 0 ? true : false}>Place order</Button>
                     </Card.Body>
                 </Card>
+                <ModalComponent message={this.state.message} 
+                show={this.state.show}
+                handleClose={this.handleClose}/>
             </Container>
         );
     }
