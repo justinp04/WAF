@@ -17,6 +17,10 @@ app.get('/getItems', (req, res) => {
 });
 
 app.get('/getImage/:searchQuery', (req, res) => {
+
+});
+
+app.post('/placeOrder', (req, res) => {
     
 });
 
