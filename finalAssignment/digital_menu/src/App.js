@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { Container } from 'react-bootstrap';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import logo from './logo.svg';
 import './App.css';
 import NavbarComponent from './components/NavbarComponent';
 import Menu from './components/Menu';
-import MenuItem from './components/MenuItem';
-import ShoppingCartItem from './components/ShoppingCartItem';
+import ShoppingCart from './components/ShoppingCart';
 
 // Import bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,8 +18,10 @@ export default class App extends Component {
         this.state = {
             menuItems: [],
             selectedItems: [],
-            numItems: 0
         }
+
+        this.addToCart = this.addToCart.bind(this);
+        this.removeFromCart = this.removeFromCart.bind(this); // Lift the state and methods so state can be shared
     }
 
     async getItems() {
@@ -36,6 +35,18 @@ export default class App extends Component {
         // console.log(this.state.menuItems);
     }
 
+    addToCart(item) {
+        this.setState((prevState) => ({
+            selectedItems: [...prevState.selectedItems, item] // Append the new item to the end of the array
+        }));
+    }
+
+    removeFromCart(itemName) {
+        this.setState((prevState) => ({
+            selectedItems: prevState.selectedItems.filter(item => item.name !== itemName)
+        }));
+    }
+
     componentDidMount() {
         this.getItems();
     }
@@ -47,8 +58,8 @@ export default class App extends Component {
                     <NavbarComponent />
                     <div className="App-header">
                         <Routes>
-                            <Route path="/cart" element={<ShoppingCartItem />}/>
-                            <Route path="/" element={<Menu menuItems={this.state.menuItems}/>}/>
+                            <Route path="/cart" element={<ShoppingCart items={this.state.selectedItems} removeFromCart={this.removeFromCart} />} />
+                            <Route path="/" element={<Menu menuItems={this.state.menuItems} addToCart={this.addToCart} />} />
                             <Route path="*" element={<Navigate to="/"/>}/>
                         </Routes>
                         {/* <ShoppingCartItem /> */}

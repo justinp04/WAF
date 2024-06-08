@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button , Container, Form} from 'react-bootstrap';
 
 export default class ShoppingCartItem extends Component {
     constructor(props) {
@@ -7,24 +7,64 @@ export default class ShoppingCartItem extends Component {
 
         this.state = {
             name: this.props.name,
-            quantity: this.props.quantity,
+            quantity: 1,
             price: this.props.price
         }
+
+        this.reduceQuantity = this.reduceQuantity.bind(this);
+        this.increaseQuantity = this.increaseQuantity.bind(this);
+        this.remove = this.remove.bind(this);
+    }
+
+    reduceQuantity() {
+        const currentQuantity = this.state.quantity;
+
+        this.setState({
+            quantity: currentQuantity - 1
+        })
+
+        console.log(this.state.quantity);
+    }
+
+    increaseQuantity() {
+        const currentQuantity = this.state.quantity;
+
+        this.setState({
+            quantity: currentQuantity + 1
+        })
+
+        console.log(this.state.quantity);
+    }
+
+    remove() {
+        this.props.removeFromCart(this.props.name);
     }
 
     render() {
         return(
-            <Card style={{ width: '18rem' }}>
-                <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-                    <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
-                    </Card.Text>
-                    <Button href="#">Add item</Button>
-                    <Button href="#">Remove item</Button>
-                    <Button href="#">Clear</Button>
+            <Card className="container">
+                <Card.Body className="fluid d-flex">
+                    <div className>
+                        <Card.Title>{this.state.name}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">Description</Card.Subtitle>
+                    </div>
+                    <Container>
+                        <Card.Text>
+                            {this.state.price}
+                        </Card.Text>
+                    </Container>
+                    <Container className="d-flex">
+                        <Container className="d-flex">
+                            <Button onClick={this.reduceQuantity} className="mx-1">-</Button>
+                            <Form.Control type="number" placeholder="0" value={this.state.quantity}/>
+                            <Button onClick={this.increaseQuantity} className="mx-1">+</Button>
+                            <Button onClick={this.remove} className="mx-1">x</Button>
+                        </Container>
+                        <div>
+                            <h5>Total</h5>
+                            <h6>{this.state.price * this.state.quantity}</h6>
+                        </div>
+                    </Container>
                 </Card.Body>
             </Card>
         );

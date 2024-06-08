@@ -11,7 +11,6 @@ export default class MenuItem extends Component {
             name: this.props.name,
             price: this.props.price,
             imageURL: '',
-            quantity: 0
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -28,13 +27,14 @@ export default class MenuItem extends Component {
     }
 
     handleClick() {
-        let newQuantity = this.state.quantity + 1;
-
-        this.setState({
-            quantity: newQuantity
+        this.props.addToCart({
+            name: this.props.name,
+            price: this.props.price
         });
 
-        console.log(this.state.name, this.state.quantity);
+        this.setState({
+            selected: true
+        });
     }
 
     render() {
@@ -48,7 +48,8 @@ export default class MenuItem extends Component {
                     <Button 
                         className="fluid" 
                         variant="primary" 
-                        onClick={this.handleClick}>Add to cart</Button>
+                        onClick={this.handleClick}
+                        disabled={this.state.selected}>Add to cart</Button>
                 </Card.Body>
             </Card>
         );

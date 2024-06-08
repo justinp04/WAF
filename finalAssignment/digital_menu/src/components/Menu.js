@@ -17,7 +17,8 @@ export default class Menu extends Component {
                 {this.state.menuItems.map(item => (
                     <MenuItem
                         name={item.name}
-                        price={item.price}/>
+                        price={item.price}
+                        addToCart={this.props.addToCart}/>
                 ))}
             </Container>
         );
