@@ -18,6 +18,7 @@ export default class App extends Component {
         this.state = {
             menuItems: [],
             selectedItems: [],
+            loading: true
         }
 
         this.addToCart = this.addToCart.bind(this);
@@ -25,14 +26,22 @@ export default class App extends Component {
     }
 
     async getItems() {
-        const response = await axios.get(`http://localhost:3000/getItems`);
-        const pMenuItems = response.data;
+        try {
+            const response = await axios.get(`http://localhost:3000/getItems`);
+            const pMenuItems = response.data;
 
-        this.setState({
-            menuItems: pMenuItems
-        });
-
-        // console.log(this.state.menuItems);
+            this.setState({
+                menuItems: pMenuItems,
+                loading: false 
+            });
+        } 
+        catch (error) {
+            console.error("Error fetching items:", error);
+            
+            this.setState({
+                loading: false
+            });
+        }
     }
 
     addToCart(item) {
@@ -52,6 +61,10 @@ export default class App extends Component {
     }
 
     render() {
+        if (this.state.loading) {
+            return <div className="App-header"> Loading... </div>;
+        }
+
         return (
             <React.Fragment>
                 <div className="App">

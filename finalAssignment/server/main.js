@@ -21,7 +21,12 @@ app.get('/getImage/:searchQuery', (req, res) => {
 });
 
 app.post('/placeOrder', (req, res) => {
-    
+    console.log(req.body);
+
+    if(req.body)
+        res.send("Successful");
+    else
+        res.send("Error");
 });
 
 app.listen(3000, () => console.log('Listening on port 3000'));

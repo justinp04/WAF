@@ -21,17 +21,24 @@ export default class ShoppingCart extends Component {
         this.updateQuantity = this.updateQuantity.bind(this);
     }
 
-    async placeOrder(selectedItems) {
-        // const order = await axios.post('http://localhost:3000/placeOrder', this.props.items.map(item => ({
-        //     ...item,
-        //     quantity: this.state.quantities[item.name]
-        // })));
+    async placeOrder() {
+        console.log("Order place attempt");
 
-        // console.log(order.status);
+        const order = await axios.post('http://localhost:3000/placeOrder', this.props.items.map(item => ({
+            ...item,
+            quantity: this.state.quantities[item.name]
+        })));
 
-        // return order.status;
+        console.log(order.status);
 
-        console.log(this.props.items);
+        if(order.status) {
+            this.props.items.map(item => this.props.removeFromCart(item.name));
+            return true;
+        }
+
+        return false;
+
+        // console.log(this.props.items);
     }
 
     // After lifting the state, need this method to allow the ShoppingCartItems to modify the state.
