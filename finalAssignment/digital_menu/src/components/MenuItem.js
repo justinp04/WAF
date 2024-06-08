@@ -13,6 +13,8 @@ export default class MenuItem extends Component {
             imageURL: '',
             quantity: 0
         }
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     async getImage() {
@@ -25,18 +27,28 @@ export default class MenuItem extends Component {
         });
     }
 
+    handleClick() {
+        let newQuantity = this.state.quantity + 1;
+
+        this.setState({
+            quantity: newQuantity
+        });
+
+        console.log(this.state.name, this.state.quantity);
+    }
+
     render() {
         return(
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '18rem', margin: '0.75rem 0'}}>
                 {/* Maybe use pixabay in the back end to get the image? */}
                 <Card.Img variant="top" src={this.state.imageURL} />
                 <Card.Body>
                     <Card.Title>{this.state.name}</Card.Title>
-                    <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
-                    </Card.Text>
-                    <Button className="fluid" variant="primary">Add to card</Button>
+                    <Card.Text>{this.state.price}</Card.Text>
+                    <Button 
+                        className="fluid" 
+                        variant="primary" 
+                        onClick={this.handleClick}>Add to cart</Button>
                 </Card.Body>
             </Card>
         );

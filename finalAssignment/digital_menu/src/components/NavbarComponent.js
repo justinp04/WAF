@@ -1,11 +1,12 @@
 import { React, Component } from 'react';
 import { Nav, Navbar, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class NavbarComponent extends Component {
     render() {
         return(
             <Navbar bg="dark" data-bs-theme="dark" fixed="top">
-                <Container className="d-flex">
+                <Container className="d-flex justify-content-between">
                     <div className="d-flex">
                         <Navbar.Brand href="#home">
                             <img
@@ -18,10 +19,13 @@ class NavbarComponent extends Component {
                             Bussin Biner
                         </Navbar.Brand>
                         <Nav className="me-auto">
-                            <Nav.Link href="#home">Home</Nav.Link>
+                            <Nav.Link as={Link} to="/">Home</Nav.Link>
                         </Nav>
                     </div>
                     {/* Shopping cart icon goes here */}
+                    <Nav className="">
+                        <Nav.Link as={Link} to="/cart">Cart</Nav.Link>
+                    </Nav>
                 </Container>
             </Navbar>
         );
